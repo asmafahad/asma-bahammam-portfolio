@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Editorial cream + warm-brown ink palette */
+    --bg: #FAF8F5;
+    --ink: #1F1A15;
+    --ink-muted: #6B5D52;
+    --ink-soft: #9A8E83;
+    --accent: #6B4423;
+    --accent-hover: #A67B5B;
+    --accent-soft: rgba(107, 68, 35, 0.08);
+    --accent-ring: rgba(107, 68, 35, 0.15);
+    --rule: rgba(31, 26, 21, 0.08);
+    --rule-strong: rgba(31, 26, 21, 0.16);
+
+    /* Per-section tints — derived from the brown palette so the identity holds.
+       Each tint is super-soft (close to cream) so brown ink reads cleanly on top. */
+    --tint-cream:    #FAF8F5; /* default — hero / contact */
+    --tint-sand:     #F3ECE0; /* warmer, about / experience */
+    --tint-sage:     #ECEFE2; /* skills */
+    --tint-sky:      #E8EFF3; /* education */
+    --tint-blush:    #F4E8E1; /* volunteering / certificates */
+    --tint-lavender: #EFEAF2; /* awards */
+    --tint-clay:     #F1E5D7; /* projects — the work section gets the warmest tint */
+
+    /* Live tint — SectionTintController writes here as user scrolls */
+    --section-tint: var(--tint-cream);
+    --section-tint-accent: var(--accent);
+
+    /* Legacy aliases kept so old class refs still resolve cleanly */
+    --bg-light: var(--bg);
+    --text-light: var(--ink);
+    --muted-light: var(--ink-muted);
+  }
+
+  body {
+    /* The body is the canvas. SectionTintController updates --section-tint
+       and CSS animates the color change smoothly for the dynamic-bg feel. */
+    background-color: var(--section-tint);
+    color: var(--ink);
+    overflow-x: hidden;
+    transition: background-color 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Editorial print scrollbar in the brown family */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--rule-strong);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--bg);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Default (Latin / English) — Thmanyah Serif Text for body, Serif Display for headings */
+body, [dir="rtl"], [dir="ltr"] {
+  font-family: var(--font-thmanyah-serif-text), Georgia, serif;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+h1, h2, h3, h4, .font-serif-display {
+  font-family: var(--font-thmanyah-serif-display), Georgia, serif;
+}
+
+nav, button, input, textarea, .text-sans-ui, .font-sans-ui {
+  font-family: var(--font-thmanyah-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* Arabic — promote Thmanyah Sans everywhere. The serif Arabic glyphs in this
+   family are literary/book; the sans is the "Thmanyah" identity people know. */
+html[lang="ar"] body,
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[lang="ar"] p,
+html[lang="ar"] span,
+html[lang="ar"] a,
+html[lang="ar"] li,
+html[lang="ar"] button,
+html[lang="ar"] input,
+html[lang="ar"] textarea,
+html[lang="ar"] .font-serif-display {
+  font-family: var(--font-thmanyah-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* Arabic deserves a touch more line-height and zero justification */
+html[lang="ar"] p,
+html[lang="ar"] li {
+  line-height: 1.75;
+  text-align: start;
+}
+
+/* Editorial utilities */
+.editorial-border {
+  border-color: var(--rule);
+}
+
+.text-editorial-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--rule);
+}
+
+.editorial-hover-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-hover-card:hover {
+  transform: translateY(-2px);
 }

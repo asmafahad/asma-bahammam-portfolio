@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# design source assets (not needed for deploy — woff2 already in public/fonts)
+/Design
+
 # debug
 npm-debug.log*
 yarn-debug.log*
