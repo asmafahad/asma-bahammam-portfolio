@@ -50,20 +50,20 @@ const cards: Card[] = [
     tint: 'var(--tint-sage)',
     accent: '#5C7034',
     top: '22%',
-    left: '82%',
+    left: '76%',
     delay: 0.2,
     floatY: 9,
     floatDuration: 7,
   },
   {
     key: 'ux',
-    ar: 'تجربة وتصميم المستخدم',
+    ar: 'تجربة المستخدم',
     en: 'UX & Design',
     Icon: Palette,
     tint: 'var(--tint-lavender)',
     accent: '#6E5390',
     top: '38%',
-    left: '13%',
+    left: '22%',
     delay: 0.3,
     floatY: 10,
     floatDuration: 7.5,
@@ -76,7 +76,7 @@ const cards: Card[] = [
     tint: 'var(--tint-sand)',
     accent: '#A06548',
     top: '52%',
-    left: '72%',
+    left: '70%',
     delay: 0.4,
     floatY: 7,
     floatDuration: 8,
@@ -89,7 +89,7 @@ const cards: Card[] = [
     tint: 'var(--tint-sky)',
     accent: '#3A6A88',
     top: '70%',
-    left: '18%',
+    left: '24%',
     delay: 0.5,
     floatY: 9,
     floatDuration: 6.5,
@@ -131,12 +131,12 @@ export default function HeroVisual({ locale }: { locale: 'ar' | 'en' }) {
       >
         <g stroke="rgba(107,68,35,0.18)" strokeWidth="0.25" fill="none">
           {/* Connector lines — fan out from SWE at the top through the disciplines */}
-          <line x1="45" y1="9" x2="82" y2="26" />
-          <line x1="45" y1="9" x2="13" y2="45" />
-          <line x1="82" y1="26" x2="72" y2="62" />
-          <line x1="13" y1="45" x2="18" y2="84" />
-          <line x1="72" y1="62" x2="58" y2="100" />
-          <line x1="18" y1="84" x2="58" y2="100" />
+          <line x1="45" y1="9" x2="76" y2="26" />
+          <line x1="45" y1="9" x2="22" y2="45" />
+          <line x1="76" y1="26" x2="70" y2="62" />
+          <line x1="22" y1="45" x2="24" y2="84" />
+          <line x1="70" y1="62" x2="58" y2="100" />
+          <line x1="24" y1="84" x2="58" y2="100" />
         </g>
       </svg>
 
@@ -179,16 +179,16 @@ export default function HeroVisual({ locale }: { locale: 'ar' | 'en' }) {
               ease: 'easeInOut',
             }}
             whileHover={{ scale: 1.04, y: -floatY }}
-            className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-white/95 backdrop-blur-sm border border-[var(--rule)] shadow-[0_8px_24px_-10px_rgba(31,26,21,0.18)] transition-shadow hover:shadow-[0_12px_28px_-10px_rgba(31,26,21,0.28)]"
+            className="flex items-center gap-1.5 sm:gap-2.5 px-2 py-1.5 sm:px-3.5 sm:py-2.5 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-sm border border-[var(--rule)] shadow-[0_8px_24px_-10px_rgba(31,26,21,0.18)] transition-shadow hover:shadow-[0_12px_28px_-10px_rgba(31,26,21,0.28)]"
             style={{ fontFamily: 'var(--font-thmanyah-sans), system-ui, sans-serif' }}
           >
             <div
-              className="p-1.5 rounded-lg shrink-0"
+              className="p-1 sm:p-1.5 rounded-md sm:rounded-lg shrink-0"
               style={{ backgroundColor: tint }}
             >
-              <Icon size={16} style={{ color: accent }} />
+              <Icon size={14} style={{ color: accent }} />
             </div>
-            <span className="text-[12px] font-bold tracking-tight whitespace-nowrap text-[var(--ink)]">
+            <span className="text-[10px] sm:text-[12px] font-bold tracking-tight whitespace-nowrap text-[var(--ink)]">
               {locale === 'ar' ? ar : en}
             </span>
           </motion.div>

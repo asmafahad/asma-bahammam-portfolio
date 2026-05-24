@@ -114,9 +114,9 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Left (RTL): floating discipline cards.
-              Hidden on small screens — the text alone holds the hero. */}
-          <div className="hidden lg:block">
+          {/* Left (RTL): floating discipline cards. Visible on every screen —
+              on mobile/iPad it stacks below the text in the single-column grid. */}
+          <div className="mt-6 lg:mt-0">
             <HeroVisual locale={locale} />
           </div>
         </div>
